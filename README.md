@@ -23,4 +23,4 @@ Covid Networks brings volunteers and seniors together to prevent isolation of se
 # Future
 - Support for robots.txt
 - Create better output when scraping (output is a mess to read)
-- 
+- Add time limit to scraping to stop when stuck on government documents (thinking about it)
