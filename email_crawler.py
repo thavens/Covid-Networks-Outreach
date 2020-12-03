@@ -2,7 +2,6 @@ import time
 import sqlite3
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 from urllib.parse import urlsplit
 import requests.exceptions
 from collections import deque
@@ -11,6 +10,7 @@ import lxml
 import multiprocessing as mp
 import random
 import sys
+import traceback
 
 def create_email_table(c):
     sql_create = '''CREATE TABLE IF NOT EXISTS emails (
@@ -64,7 +64,7 @@ def scrape(url, di, emails):
             print(',', end='')
             continue
         except Exception as err:
-            traceback.print_tb(err.__traceback__)
+            print('Response error', end='')
             continue
 
         for i in re.findall(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.gov', response.text, re.I):
@@ -79,10 +79,12 @@ def scrape(url, di, emails):
             anchor = link.attrs['href'] if 'href' in link.attrs else ''
 
             if anchor.startswith('/') and slash_freq(anchor) < 3:
-                local_urls.add(anchor)
+                if len(anchor) < 25:
+                    local_urls.add(anchor)
             elif strip_base in anchor and slash_freq(anchor) < 5:
                 anchor = anchor[len(base_url):]
-                local_urls.add(anchor)
+                if len(anchor) < 25:
+                    local_urls.add(anchor)
             elif 'mailto:' in anchor:
                 match = re.search(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.gov', anchor)
                 if match:
@@ -134,11 +136,11 @@ if __name__ == '__main__':
         _ = mp.Process(target=run, args=(site, done, emails), name=site[2], daemon=True)
         _.start()
 
-        while len(mp.active_children()) >= mp.cpu_count() * 2 or (not sites and mp.active_children()):
+        while len(mp.active_children()) >= mp.cpu_count() * 4 or (not sites and mp.active_children()):
             if (not done.empty()) or (not emails.empty()):
                 used_city(c, done)
                 insert_new_emails(c, emails)
                 conn.commit()
-            time.sleep(120)
+            time.sleep(60)
 
     conn.close()
