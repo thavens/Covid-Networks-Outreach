@@ -7,12 +7,10 @@ Covid Networks brings volunteers and seniors together to prevent isolation of se
     - Please check https://www.ftc.gov/sites/default/files/documents/cases/2007/11/canspam.pdf
 
 - Use of this program was for volunteering purposes only and has no relations to commerce
-- I only scrape city-council sites 
-- Emails will only be sent once to one recipient. Hence there is no need for unsubscribe
-- Non-automatic email responses will be read and if needed replied to
-- Email database used only to make sure that one person only gets one email and document progress
-- Past and future updates will continue to make sure that emails are only sent to those within the jurisdiction of our volunteering opportunity
-- Will not scrape social media or send emails to non-gov't addresses
+- We have many constraints that constrain emails to only those within the justdiction of what we are doing and those who would be interested
+    - We only send targeted emails and do not harvest links from social medias or wikipedia
+    - Those emailed will only every recieve one email unless there is a reply
+      - All non-automatic replies are read and responded to if required
 
 # Updates
 - screen url against common urls so you don't start crawling social media
