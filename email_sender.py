@@ -11,7 +11,7 @@ import random
 def mk_msg(city):
     return f'''Hello,
 
-    I am {NAME}, a volunteer with the student-run COVID Networks. We are reaching out because we are interested in working with the city of {city} to expand our community impact and further our mission in alleviating loneliness caused by social isolation amongst both students and seniors.
+    I am {NAMES[random.randint(0, len(NAMES) - 1)]}, a volunteer with the student-run COVID Networks. We are reaching out because we are interested in working with the city of {city} to expand our community impact and further our mission in alleviating loneliness caused by social isolation amongst both students and seniors.
 
     Regarding our organization, we have designed a free virtual service where senior citizens can request to hold online video sessions one-on-one with students and other young citizens. In addition, we prepare fun events and activities for seniors that will help them find a community during this pandemic. These include interactive yoga meditation sessions, book clubs, trivia/online games, live music performances and artwork sessions, and more! We are currently a 501-c national nonprofit recognized by the government. Our 300+ volunteers have worked with over 3000 seniors and 30 senior centers!
 
@@ -21,10 +21,11 @@ def mk_msg(city):
 
     Thank you so much for your time and consideration.
     '''
-
+with open('names.txt') as handle:
+    NAMES = handle.readlines()
+NAMES = map(str.strip, NAMES)
 EMAIL_ADDRESS = passwords.username
 EMAIL_PASSWORD = passwords.password
-NAME = 'Mike'
 mailed = list()
 failed = False
 count = 0
@@ -39,9 +40,9 @@ def send_mail(email):
     try:
         with SMTP('smtp.gmail.com', 587) as smtp:
             smtp.starttls()
-            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-            smtp.send_message(msg)
-            mailed.append(email[0])
+            #smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            #smtp.send_message(msg)
+            #mailed.append(email[0])
     except:
         print('message failed')
         global failed
@@ -99,7 +100,7 @@ def save():
     conn.commit()
 
 def eledgeble(emails, id):
-    bad_words = ['court', 'report', 'police', 'fire', 'policy', 'emergeny', 'finance', 'staff', 'inspect', 'treasury', 'election', 'deputy']
+    bad_words = ['court', 'report', 'police', 'fire', 'policy', 'emergency', 'finance', 'complaint', 'staff', 'inspect', 'treasury', 'election', 'deputy', 'transit', 'airport', 'prosecutor', 'customerservice','stormwater', 'housing', 'safety', 'hotline', 'parking', 'development', 'license', 'admin', 'webhelp', 'property', 'closure', 'records', 'plan']
     bad_ids = list()
     good_emails = list()
     if not emails:

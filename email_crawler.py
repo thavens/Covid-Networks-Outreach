@@ -55,7 +55,7 @@ def scrape(url, di, emails):
         processed_urls.add(url)
         # get url's content
         try:
-            response = requests.get(base_url + url)
+            response = requests.get(base_url + url, headers={'User-Agent':'crowly'})
             time.sleep(5)
         except (requests.exceptions.MissingSchema,
                 requests.exceptions.ConnectionError,
@@ -78,10 +78,10 @@ def scrape(url, di, emails):
             # extract link url from the anchor
             anchor = link.attrs['href'] if 'href' in link.attrs else ''
 
-            if anchor.startswith('/') and slash_freq(anchor) < 3:
+            if anchor.startswith('/') and slash_freq(anchor) < 3 and not '.png' in anchor and not '.jpg' in anchor and not '.jpeg' in anchor:
                 if len(anchor) < 25:
                     local_urls.add(anchor)
-            elif strip_base in anchor and slash_freq(anchor) < 5:
+            elif strip_base in anchor and slash_freq(anchor) < 5 and not '.png' in anchor and not '.jpg' in anchor and not '.jpeg' in anchor:
                 anchor = anchor[len(base_url):]
                 if len(anchor) < 25:
                     local_urls.add(anchor)
