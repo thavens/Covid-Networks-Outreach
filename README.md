@@ -12,6 +12,10 @@ Covid Networks brings volunteers and seniors together to prevent isolation of se
     - Those emailed will <b>ONLY</b> ever recieve <b>ONE</b> email unless they reply
       - We try our best to read and reply, if required, to all non-automatic emails
 
+# Comments
+ - email_sender.py is depricated. It doesn't even work correctly :(
+ - reprogrammed email_sender on email_sender.ipynb
+
 # Updates
 - screen url against common urls so program doesn't start crawling social media
 - ignore emails with certain words in them, prevents unessecary emails
