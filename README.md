@@ -14,7 +14,7 @@ Covid Networks brings volunteers and seniors together to prevent isolation of se
 
 # Comments
  - email_sender.py is depricated. It doesn't even work correctly :(
- - reprogrammed email_sender on email_sender.ipynb
+ - reprogrammed email_sender on email sender.ipynb
 
 # Updates
 - screen url against common urls so program doesn't start crawling social media
