@@ -13,8 +13,7 @@ Covid Networks brings volunteers and seniors together to prevent isolation of se
       - We try our best to read and reply, if required, to all non-automatic emails
 
 # Comments
- - email_sender.py is depricated. It doesn't even work correctly :(
- - reprogrammed email_sender on email sender.ipynb
+ - reprogrammed email_sender on email sender
 
 # Updates
 - screen url against common urls so program doesn't start crawling social media
@@ -27,4 +26,4 @@ Covid Networks brings volunteers and seniors together to prevent isolation of se
 # Future
 - Support for robots.txt
 - Create better output when scraping (output is a mess to read)
-- Add time limit to scraping to stop when stuck on government documents (thinking about it)
+- Add time limit to scraping to stop when stuck on government documents
